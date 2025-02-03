@@ -15,7 +15,7 @@ class GetAllDataUsingBloc extends Bloc<GetAllDataEvent, GetAllDataState>{
     on<GetAllDataEventRequested>((event, emit) async{
       emit(GetAllDataLoadingState());
       try{
-        final Uri uri = Uri.parse("https://www.alphavantage.co/query?function=TOP_GAINERS_LOSERS&apikey=XTFH8CF3CVIAK6G1");
+        final Uri uri = Uri.parse("https://www.alphavantage.co/query?function=TOP_GAINERS_LOSERS&apikey=PLACE_YOUR_API_KEY");
         final res = await http.get(uri);
         if(res.statusCode == 200){
           final Map<String, dynamic> response = jsonDecode(res.body);
