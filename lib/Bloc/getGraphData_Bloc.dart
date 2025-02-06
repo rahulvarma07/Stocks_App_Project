@@ -3,20 +3,9 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stockproject/Secrets/secretsKeys.dart';
 
-sealed class GetIndividualDataState{}
-final class GetIndividualDataStateInitial extends GetIndividualDataState{} // Initial
-final class GetIndividualDataStateSuccess extends GetIndividualDataState{
-  Map<String, dynamic>response;
-  GetIndividualDataStateSuccess({required this.response});
-} // Success
-final class GetIndividualDataStateFailed  extends GetIndividualDataState{} // Failure
-final class GetIndividualDataStateLoading extends GetIndividualDataState{} // Loading
+part 'getGraphData_state.dart';
+part 'getGraphData_event.dart';
 
-sealed class GetIndividualDataEvent{}
-final class GetIndividualDataRequested extends GetIndividualDataEvent{
-  final String ticker;
-  GetIndividualDataRequested({required this.ticker});
-}
 
 class GetIndividualDataBloc extends Bloc<GetIndividualDataEvent, GetIndividualDataState>{
   GetIndividualDataBloc() : super(GetIndividualDataStateInitial()){
@@ -29,7 +18,6 @@ class GetIndividualDataBloc extends Bloc<GetIndividualDataEvent, GetIndividualDa
           Map<String, dynamic>finalResponse = jsonDecode(response.body);
           Map<String, dynamic>res = finalResponse["Time Series (15min)"]??{"Data" : "None"};
           emit(GetIndividualDataStateSuccess(response: res));
-          print(res);
         }
       }catch(e){
         emit(GetIndividualDataStateFailed());
