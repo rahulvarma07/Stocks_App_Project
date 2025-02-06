@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stockproject/Bloc/getGraphData_Bloc.dart';
+import 'package:stockproject/Screens/Pages/showStockCharts.dart';
 import '../../Bloc/getAllData_Bloc.dart';
 import '../../Utils/ScreenUtils/stockContainerWidget.dart';
 
@@ -19,7 +20,9 @@ class GainerStocks extends StatelessWidget {
             itemBuilder: (context, ind){
               return GestureDetector(
                 onTap: (){
-                  context.read<GetIndividualDataBloc>().add(GetIndividualDataRequested(ticker: state.topGainers[ind]["ticker"]));
+                  FocusScope.of(context).unfocus();
+                  //context.read<GetIndividualDataBloc>().add(GetIndividualDataRequested(ticker: state.topGainers[ind]["ticker"]));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>ShowStockCharts()));
                 },
                   child: StockDetails(ticker: state.topGainers[ind]["ticker"], priceOfTheCurrentStock: state.topGainers[ind]["price"], changePrice: state.topGainers[ind]["change_amount"], changePercentage: state.topGainers[ind]["change_percentage"], volume: state.topGainers[ind]["volume"],)
               );

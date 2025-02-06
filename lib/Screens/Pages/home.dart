@@ -7,6 +7,8 @@ import 'package:stockproject/Screens/Pages/lossesStocks.dart';
 import 'package:stockproject/Screens/Pages/watchList.dart';
 import 'package:stockproject/Themes/themeData.dart';
 
+import '../../Utils/Home/searchOptionWidget.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -16,18 +18,18 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final searchTextController = TextEditingController();
-
+  final FocusNode _focusNode = FocusNode();
   @override
   void initState() {
     context.read<GetAllDataUsingBloc>().add(GetAllDataEventRequested());
     super.initState();
   }
 
-  @override
-  void dispose() {
-    searchTextController.dispose();
-    super.dispose();
-  }
+  // @override
+  // // void dispose() {
+  // //   searchTextController.dispose();
+  // //   super.dispose();
+  // // }
 
   @override
   Widget build(BuildContext context) {
@@ -96,37 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: SizedBox(
                                 height: 60,
                                 width: double.infinity,
-                                child: TextField(
-                                  controller: searchTextController,
-                                  cursorColor: AppTheme().textColor,
-                                  decoration: InputDecoration(
-                                    fillColor: AppTheme().primaryColor,
-                                    filled: true,
-                                    prefixIcon: Icon(
-                                      Icons.search,
-                                      color: AppTheme().textColor,
-                                    ),
-                                    border: OutlineInputBorder(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(20)),
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: AppTheme().primaryColor,
-                                      ),
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(18)),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: AppTheme().primaryColor,
-                                      ),
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(20)),
-                                    ),
-                                  ),
-                                  style: TextStyle(color: AppTheme().textColor),
-                                ),
+                                child: SearchOptionWidget(searchTextController: searchTextController,)
                               ),
                             )
                           ],
