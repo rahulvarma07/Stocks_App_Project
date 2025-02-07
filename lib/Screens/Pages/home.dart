@@ -4,10 +4,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:stockproject/Bloc/getAllData_Bloc.dart';
 import 'package:stockproject/Screens/Pages/ProfitStocks.dart';
 import 'package:stockproject/Screens/Pages/lossesStocks.dart';
+import 'package:stockproject/Screens/Pages/searchPage.dart';
 import 'package:stockproject/Screens/Pages/watchList.dart';
 import 'package:stockproject/Themes/themeData.dart';
-
 import '../../Utils/Home/searchOptionWidget.dart';
+import '../Helpers/showSearchResultBuilder.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -95,12 +96,24 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: SizedBox(
-                                height: 60,
-                                width: double.infinity,
-                                child: SearchOptionWidget(searchTextController: searchTextController,)
+                              child: GestureDetector(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>SearchPage()));
+                                },
+                                child: Container(
+                                  height: 60,
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: AppTheme().primaryColor,
+                                    borderRadius: BorderRadius.all(Radius.circular(21))
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Align(alignment: Alignment.centerLeft,child: Icon(Icons.search, color: AppTheme().textColor,)),
+                                  ),
+                                ),
                               ),
-                            )
+                            ),
                           ],
                         )
                       ],

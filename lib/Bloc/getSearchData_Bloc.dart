@@ -10,6 +10,9 @@ part 'getSearchData_State.dart';
 
 class GetSearchDataBloc extends Bloc<GetSearchDataEvent, GetSearchDataState>{
   GetSearchDataBloc() : super(GetSearchDataInitialState()){
+    on<GetSearchEventInitial>((event, emit){
+      emit(GetSearchDataCompletedState());
+    });
     on<GetSearchDataEventRequested>((event, emit) async{
       emit(GetSearchDataInitialState());
       try{

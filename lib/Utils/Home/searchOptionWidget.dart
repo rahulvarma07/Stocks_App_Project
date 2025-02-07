@@ -13,6 +13,7 @@ class SearchOptionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return  TextField(
       textInputAction: TextInputAction.done,
+      autofocus: true,
       onSubmitted: (val){
         if(val.isNotEmpty) {
           context.read<GetSearchDataBloc>().add(GetSearchDataEventRequested(symbol: val));
@@ -20,14 +21,22 @@ class SearchOptionWidget extends StatelessWidget {
           FocusScope.of(context).unfocus();
         }
       },
+      onTap: (){
+        context.read<GetSearchDataBloc>().add(GetSearchEventInitial());
+      },
       controller: searchTextController,
       cursorColor: AppTheme().textColor,
       decoration: InputDecoration(
         fillColor: AppTheme().primaryColor,
         filled: true,
-        prefixIcon: Icon(
-          Icons.search,
-          color: AppTheme().textColor,
+        prefixIcon: GestureDetector(
+          onTap: (){
+            Navigator.pop(context);
+          },
+          child: Icon(
+            Icons.arrow_back_ios,
+            color: AppTheme().textColor,
+          ),
         ),
         border: OutlineInputBorder(
           borderRadius:
