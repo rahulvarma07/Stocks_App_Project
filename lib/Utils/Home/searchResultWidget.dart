@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stockproject/Themes/themeData.dart';
 
 class SearchResultWidget extends StatelessWidget {
   final String ticker;
@@ -7,7 +8,7 @@ class SearchResultWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(ticker),
+      title: Text(ticker, style: TextStyle(color: AppTheme().textColor),),
     );
   }
 }

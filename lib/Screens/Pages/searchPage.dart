@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stockproject/Themes/themeData.dart';
 
+import '../../Bloc/getSearchData_Bloc.dart';
 import '../../Utils/Home/searchOptionWidget.dart';
 import '../Helpers/showSearchResultBuilder.dart';
 
@@ -13,16 +15,14 @@ class SearchPage extends StatelessWidget {
       backgroundColor: AppTheme().backGroundColor,
       body: Column(
         children: [
-          SizedBox(height: 18,),
+          SizedBox(height: 20,),
           Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: SizedBox(
                   height: 60,
                   width: double.infinity,
-                  child: GestureDetector(
-                      child: SearchOptionWidget(searchTextController: searchTextController,)
-                  ),
+                  child: SearchOptionWidget(searchTextController: searchTextController,),
                 ),
               ),
           ),

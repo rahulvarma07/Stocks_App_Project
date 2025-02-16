@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:stockproject/Bloc/getAllData_Bloc.dart';
 import 'package:stockproject/Bloc/getSearchData_Bloc.dart';
 import '../../Themes/themeData.dart';
 
@@ -17,12 +16,9 @@ class SearchOptionWidget extends StatelessWidget {
       onSubmitted: (val){
         if(val.isNotEmpty) {
           context.read<GetSearchDataBloc>().add(GetSearchDataEventRequested(symbol: val));
-        } else{
+        }else{
           FocusScope.of(context).unfocus();
         }
-      },
-      onTap: (){
-        context.read<GetSearchDataBloc>().add(GetSearchEventInitial());
       },
       controller: searchTextController,
       cursorColor: AppTheme().textColor,

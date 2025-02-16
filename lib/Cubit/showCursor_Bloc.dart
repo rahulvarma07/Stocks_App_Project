@@ -1,4 +1,3 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ShowCursorColor extends Cubit<bool>{

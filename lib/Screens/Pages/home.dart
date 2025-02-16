@@ -7,6 +7,7 @@ import 'package:stockproject/Screens/Pages/lossesStocks.dart';
 import 'package:stockproject/Screens/Pages/searchPage.dart';
 import 'package:stockproject/Screens/Pages/watchList.dart';
 import 'package:stockproject/Themes/themeData.dart';
+import '../../Bloc/getSearchData_Bloc.dart';
 import '../../Utils/Home/searchOptionWidget.dart';
 import '../Helpers/showSearchResultBuilder.dart';
 
@@ -99,6 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: GestureDetector(
                                 onTap: (){
                                   Navigator.push(context, MaterialPageRoute(builder: (context)=>SearchPage()));
+                                  context.read<GetSearchDataBloc>().add(GetSearchEventInitial());
                                 },
                                 child: Container(
                                   height: 60,
